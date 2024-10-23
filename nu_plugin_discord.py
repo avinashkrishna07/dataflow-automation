@@ -150,7 +150,7 @@ def getBrowser():
     return browser
 
 def listReceivers(plugin_call,browser):
-    list_path = """//a[contains(@class,"link-")]"""
+    list_path = """//a[contains(@aria-label,"direct message")]"""
     elements = browser.find_elements(By.XPATH,list_path)
     ids = []
     names = []
@@ -262,7 +262,7 @@ def sendMessage(plugin_call,browser):
             receiver_sidebar_avatar.click()
 
             message_box = '//div[@role="textbox"]'
-            # WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, message_box)))
+            WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, message_box)))
             message_prompt = browser.find_element(By.XPATH,message_box)
 
             msg = plugin_call["CallInfo"]["call"]["positional"][0]["String"]["val"]
